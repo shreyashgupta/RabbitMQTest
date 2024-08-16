@@ -8,8 +8,9 @@ connection = pika.BlockingConnection(
 channel = connection.channel()
 
 while 1:
-    channel.queue_declare(queue='hello')
+    channel.exchange_declare(exchange='direct_msg',
+                         exchange_type='direct')
     payload = f"Hello World! {random.randint(0,1000)}"
-    channel.basic_publish(exchange='', routing_key='hello', body=payload)
+    channel.basic_publish(exchange='direct_msg', routing_key='provider', body=payload)
     print(f"[x] Sent '{payload}'")
     time.sleep(1)

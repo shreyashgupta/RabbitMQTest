@@ -14,7 +14,7 @@ def main():
     def callback(ch, method, properties, body):
         print(f" [x] Received {body}")
 
-    channel.queue_bind(exchange="direct_msg", queue=queue_name, routing_key="provider")
+    channel.queue_bind(exchange="direct_msg", queue=queue_name, routing_key="shreyash")
 
     print("Opened queue: " + queue_name)
     channel.basic_consume(queue=queue_name, on_message_callback=callback, auto_ack=True)
